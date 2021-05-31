@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+
+<body>
+
+
+	<form action="fetch">
+		<button type="submit">fetch data</button>
+	</form>
+	<button onclick="show()" id="details">insert</button>
+	<div id="display">hi</div>
+
+	<script scr="jquery.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	jquery
+	<script>
+		function show() {
+			console.log("1");
+			let xhr = new XMLHttpRequest();
+			console.log("2");
+			xhr.open("GET", "books.json", true)
+			console.log("3");
+
+			xhr.onload = function() {
+				console.log(xhr.responseText);
+				console.log("4");
+				if (xhr.status == 200) {
+					var output = "";
+					var data = JSON.parse(xhr.responseText);
+					for ( let i in data) {
+						console.log(data[i]);
+
+					}
+
+				} else {
+					console.log("connection failed")
+				}
+				document.getElementById("display").innerHTML = output;
+				$.ajax({
+					url : 'InsertBook',
+					type : 'POST',
+					dataType : 'json',
+					data : JSON.stringify(data),
+				/* success : function(result) {
+					alert('SUCCESS');
+				} */
+				});
+			}
+			xhr.send();
+		}
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <button onclick="show()" id="details">click here</button>
+	<div id="display">hi</div>
+
+	<script scr="jquery.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	jquery
+	<script>
+		function show() {
+			console.log("1");
+			let xhr = new XMLHttpRequest();
+			console.log("2");
+			xhr.open("GET", "players.json", true)
+			console.log("3");
+
+			xhr.onload = function() {
+				console.log(xhr.responseText);
+				console.log("4");
+				if (xhr.status == 200) {
+					var output = "";
+					var data = JSON.parse(xhr.responseText);
+					for ( let i in data) {
+						console.log(data[i]);
+
+					}
+
+				} else {
+					console.log("connection failed")
+				}
+				document.getElementById("display").innerHTML = output;
+				$.ajax({
+					url : 'Insert',
+					type : 'POST',
+					dataType : 'json',
+					data : JSON.stringify(data),
+					/* success : function(result) {
+						alert('SUCCESS');
+					} */
+				});
+			}
+			xhr.send();
+		}
+	</script> -->
+</body>
+
+</html>
